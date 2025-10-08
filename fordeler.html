@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adresseavisen – Fordeler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--text:#111;--muted:#555;--border:#e5e7eb;--brand:#005379;--accent:#28aae2;--radius:3px}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Roboto,system-ui,-apple-system,Segoe UI,Helvetica,Arial;color:var(--text);background:#fff}
+    a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+    .container{max-width:1080px;margin:0 auto;padding:24px}
+    .intro{padding:20px 0}
+    .intro h1{font-size:clamp(22px,3.4vw,32px);margin:0 0 6px}
+    .intro p{margin:0;color:var(--muted)}
+    .grid{display:grid;gap:16px;margin-top:16px;align-items:stretch}
+    @media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media (min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+    .card{position:relative;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;height:100%}
+    .card-media{position:relative;height:140px;background:#f6f6f6}
+    .card-media img{width:100%;height:100%;object-fit:cover}
+    .sticker{position:absolute;top:10px;right:10px;width:48px;height:48px;background:var(--accent);color:#fff;border-radius:999px;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+    .card-body{padding:14px 12px 0;flex:1 1 auto}
+    .card h3{margin:0 0 6px;font-size:17px}
+    .meta{font-size:13px;color:var(--muted);margin:8px 0 12px;display:flex;flex-direction:column;gap:2px}
+    .cta{padding:0 12px 12px}
+    .btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:100%;border:0;border-radius:var(--radius);background:var(--brand);color:#fff;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none}
+    .btn:focus-visible{outline:2px solid #000;outline-offset:2px}
+    footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;text-align:center}
+    .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:50}
+    .overlay.open{display:flex}
+    .dialog{background:#fff;border:1px solid var(--border);border-radius:var(--radius);width:min(560px,92vw);display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+    .dialog-header{position:relative;border-bottom:0;padding:0}
+    .dialog-title{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .close{position:absolute;top:8px;right:8px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:6px 10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .modal-media{width:100%;background:#f6f6f6;border-bottom:1px solid var(--border)}
+    .modal-media img{width:100%;height:220px;object-fit:cover}
+    @media (min-width:720px){.modal-media img{height:300px}}
+    @media (min-width:1024px){.modal-media img{height:360px}}
+    .modal-content{padding:12px}
+    .modal-title{margin:8px 0 6px;font-size:18px;font-weight:700;color:#111}
+    @media (min-width:720px){.modal-title{font-size:20px}}
+    .details{display:flex;flex-wrap:wrap;gap:8px 12px;font-size:13px;color:var(--muted);margin:6px 0 8px}
+    .detail b{color:#333;margin-right:4px}
+    .modal-desc{margin:6px 0 12px;color:#333;line-height:1.5}
+    .codecard{position:relative;background:var(--brand);color:#fff;border-radius:var(--radius);padding:16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .codecard:before,.codecard:after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:#fff}
+    .codecard:before{left:-8px}.codecard:after{right:-8px}
+    .codecard-label{font-size:12px;letter-spacing:.3px;text-transform:uppercase;opacity:.9;margin-bottom:6px}
+    .codecard-code{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800;font-size:24px;letter-spacing:2px;background:rgba(255,255,255,.08);padding:10px 14px;border-radius:var(--radius)}
+    @media (min-width:720px){.codecard-code{font-size:28px;letter-spacing:2.5px}}
+    .codecard-actions{margin-top:10px;display:flex;gap:8px;justify-content:center;align-items:center}
+    .codecard .copy{background:#fff;border:0;border-radius:var(--radius);padding:8px 14px;font-weight:700;cursor:pointer}
+    .codecard .ok{color:#fff;font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="intro" aria-label="Introduksjon">
+      <h1>Aktuelle fordeler fra Adresseavisen</h1>
+      <p>Bruk rabattkoden i kassa eller ved kjøp på nett.</p>
+    </section>
+
+    <section class="grid" aria-label="Tilgjengelige fordeler">
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg" alt="Lerkendal stadion / RBK"/>
+          <span class="sticker">100kr</span>
+        </div>
+        <div class="card-body">
+          <h3>Adressabilletten på Lerkendal</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Begrenset antall per kamp</div>
+            <div>Lerkendal stadion, Trondheim</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Adressabilletten – RBK" data-code="RBK-ADRESSA-90" data-when="Flere datoer" data-where="Lerkendal stadion, Trondheim" data-desc="Sikre deg Adressabilletten til utvalgte RBK‑hjemmekamper. Begrenset antall. Maks 2 billetter per abonnent, så langt lageret rekker." data-img="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg" alt="Ranheim Fotball – Ranheim Extra Arena"/>
+          <span class="sticker">10%</span>
+        </div>
+        <div class="card-body">
+          <h3>Ranheim Fotball</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Alle hjemmekamper</div>
+            <div>Ranheim Extra Arena, Trondheim</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Ranheim – 10%" data-code="RANHEIM-10" data-when="Hjemmekamper" data-where="Ranheim Extra Arena, Trondheim" data-desc="Få 10% rabatt på billetter til Ranheim sine hjemmekamper på Ranheim Extra Arena. Gjelder ordinære billetter i kampanjeperioden." data-img="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg" alt="Trondheim Symfoniorkester"/>
+          <span class="sticker">10%</span>
+        </div>
+        <div class="card-body">
+          <h3>Trondheim Symfoniorkester</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Gjelder ut 2025</div>
+            <div>Trondheim</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Trondheim Symfoniorkester – 10%" data-code="TSO-10-2025" data-when="Gjelder ut 2025" data-where="Trondheim" data-desc="Få 10% rabatt på utvalgte konserter med Trondheim Symfoniorkester. Gjelder i kampanjeperioden ut 2025." data-img="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg" alt="Videokurs – Bent Stiansen"/>
+          <span class="sticker">50%</span>
+        </div>
+        <div class="card-body">
+          <h3>Videokurs med Bent Stiansen</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Gjelder ut november 2025</div>
+            <div>Se når du vil</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Videokurs med Bent Stiansen – 50%" data-code="FRAXX-STIANSEN-50-NOV" data-imgpos="50% 15%" data-img="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg" alt="TRD.by – helgestemning"/>
+          <span class="sticker">30%</span>
+        </div>
+        <div class="card-body">
+          <h3>Inspirerende videokurs med kjente profiler</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Fast avtale</div>
+            <div>Se når du vil</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Fraxx – 30%" data-code="FRAXX-30-OKT" data-imgpos="50% 15%" data-img="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg" alt="Kolstad Håndball"/>
+          <span class="sticker">15%</span>
+        </div>
+        <div class="card-body">
+          <h3>Billetter til Kolstad Håndball</h3>
+          <div class="meta" aria-label="Detaljer">
+            <div>Fast avtale</div>
+            <div>Kolstad Arena</div>
+          </div>
+        </div>
+        <div class="cta">
+          <button class="btn open-modal" data-title="Kolstad – 15%" data-code="KOLSTAD-15" data-when="Fast avtale" data-where="Kolstad Arena" data-desc="Spar 15% på Kolstad Håndball sine hjemmekamper gjennom hele sesongen" data-img="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg">Vis rabattkode</button>
+        </div>
+      </article>
+    </section>
+
+    <footer><p>Vilkår kan gjelde. Enkelte fordeler har begrenset kapasitet eller utvalgte datoer.</p></footer>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div class="dialog">
+      <div class="dialog-header">
+        <div class="dialog-title" id="dialog-title">Rabattkode</div>
+        <button class="close" type="button" id="closeBtn" aria-label="Lukk">Lukk ×</button>
+      </div>
+      <div class="modal-media"><img id="modalImg" alt=""></div>
+      <div class="modal-content">
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="details">
+          <div class="detail" id="modalWhenWrap" hidden><b>Når:</b> <span id="modalWhen"></span></div>
+          <div class="detail" id="modalWhereWrap" hidden><b>Sted:</b> <span id="modalWhere"></span></div>
+        </div>
+        <p class="modal-desc" id="modalDesc" hidden></p>
+        <div class="codecard" role="group" aria-label="Rabattkode">
+          <div class="codecard-label">Rabattkode</div>
+          <div class="codecard-code" id="theCode" tabindex="0">KODE-XXXX</div>
+          <div class="codecard-actions">
+            <button class="copy" type="button" id="copyBtn" aria-describedby="copied">Kopier kode</button>
+            <span class="ok" id="copied" hidden>Kopiert!</span>
+          </div>
+          <div class="hint">Vis koden ved kjøp, eller lim inn i nettbutikken.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const overlay = document.getElementById('overlay');
+    const titleEl = document.getElementById('dialog-title');
+    const closeBtn = document.getElementById('closeBtn');
+    const imgEl    = document.getElementById('modalImg');
+    const h2El     = document.getElementById('modalTitle');
+    const whenWrap = document.getElementById('modalWhenWrap');
+    const whereWrap= document.getElementById('modalWhereWrap');
+    const whenEl   = document.getElementById('modalWhen');
+    const whereEl  = document.getElementById('modalWhere');
+    const descEl   = document.getElementById('modalDesc');
+    const codeEl   = document.getElementById('theCode');
+    const copyBtn  = document.getElementById('copyBtn');
+    const copiedEl = document.getElementById('copied');
+
+    function openModal(data){
+      titleEl.textContent = data.title || 'Rabattkode';
+      if(data.img){ imgEl.src = data.img; imgEl.style.objectPosition = data.imgpos || ''; imgEl.parentElement.style.display = ''; }
+      else { imgEl.removeAttribute('src'); imgEl.parentElement.style.display = 'none'; }
+      h2El.textContent = data.title || '';
+      whenEl.textContent = data.when || '';
+      whereEl.textContent = data.where || '';
+      descEl.textContent = data.desc || '';
+      whenWrap.hidden  = !data.when;
+      whereWrap.hidden = !data.where;
+      descEl.hidden    = !data.desc;
+      codeEl.textContent = data.code || 'KODE-XXXX';
+      overlay.classList.add('open');
+    }
+
+    function closeModal(){ overlay.classList.remove('open'); }
+
+    document.querySelectorAll('.open-modal').forEach(btn => {
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal({
+          title:this.dataset.title, code:this.dataset.code, when:this.dataset.when,
+          where:this.dataset.where, desc:this.dataset.desc, img:this.dataset.img,
+          imgpos:this.dataset.imgpos
+        });
+      });
+    });
+
+    copyBtn.addEventListener('click', async function(){
+      try{ await navigator.clipboard.writeText(codeEl.textContent); }
+      catch(e){ const tmp=document.createElement('input'); tmp.value=codeEl.textContent; document.body.appendChild(tmp); tmp.select(); try{document.execCommand('copy');}catch(_){ } document.body.removeChild(tmp); }
+      copiedEl.hidden=false; setTimeout(()=>copiedEl.hidden=true,2000);
+    });
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closeModal(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+  })();
+  </script>
+</body>
+</html>

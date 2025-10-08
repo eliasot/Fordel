@@ -17,36 +17,46 @@
     .intro{padding:20px 0}
     .intro h1{font-size:clamp(22px,3.4vw,32px);margin:0 0 6px}
     .intro p{margin:0;color:var(--muted)}
+
     .grid{display:grid;gap:16px;margin-top:16px;align-items:stretch}
     @media (min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
     @media (min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+
     .card{position:relative;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column;height:100%}
     .card-media{position:relative;height:140px;background:#f6f6f6}
-    .card-media img{width:100%;height:100%;object-fit:cover}
+    .card-media img{width:100%;height:100%;object-fit:cover;image-rendering:auto;filter:contrast(105%) saturate(105%)}
     .sticker{position:absolute;top:10px;right:10px;width:48px;height:48px;background:var(--accent);color:#fff;border-radius:999px;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 0 rgba(0,0,0,.06)}
+
     .card-body{padding:14px 12px 0;flex:1 1 auto}
     .card h3{margin:0 0 6px;font-size:17px}
     .meta{font-size:13px;color:var(--muted);margin:8px 0 12px;display:flex;flex-direction:column;gap:2px}
+
     .cta{padding:0 12px 12px}
     .btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;width:100%;border:0;border-radius:var(--radius);background:var(--brand);color:#fff;padding:10px 14px;font-weight:600;cursor:pointer;text-decoration:none}
     .btn:focus-visible{outline:2px solid #000;outline-offset:2px}
+
     footer{margin-top:24px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:13px;text-align:center}
+
+    /* Modal inne i samme (enkelt) dokument */
     .overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:50}
     .overlay.open{display:flex}
     .dialog{background:#fff;border:1px solid var(--border);border-radius:var(--radius);width:min(560px,92vw);display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,.15)}
     .dialog-header{position:relative;border-bottom:0;padding:0}
     .dialog-title{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .close{position:absolute;top:8px;right:8px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:6px 10px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+
     .modal-media{width:100%;background:#f6f6f6;border-bottom:1px solid var(--border)}
-    .modal-media img{width:100%;height:220px;object-fit:cover}
+    .modal-media img{width:100%;height:220px;object-fit:cover;image-rendering:auto;filter:contrast(105%) saturate(105%)}
     @media (min-width:720px){.modal-media img{height:300px}}
     @media (min-width:1024px){.modal-media img{height:360px}}
+
     .modal-content{padding:12px}
     .modal-title{margin:8px 0 6px;font-size:18px;font-weight:700;color:#111}
     @media (min-width:720px){.modal-title{font-size:20px}}
     .details{display:flex;flex-wrap:wrap;gap:8px 12px;font-size:13px;color:var(--muted);margin:6px 0 8px}
     .detail b{color:#333;margin-right:4px}
     .modal-desc{margin:6px 0 12px;color:#333;line-height:1.5}
+
     .codecard{position:relative;background:var(--brand);color:#fff;border-radius:var(--radius);padding:16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.08)}
     .codecard:before,.codecard:after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:16px;height:16px;border-radius:50%;background:#fff}
     .codecard:before{left:-8px}.codecard:after{right:-8px}
@@ -66,9 +76,15 @@
     </section>
 
     <section class="grid" aria-label="Tilgjengelige fordeler">
+      <!-- RBK -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg" alt="Lerkendal stadion / RBK"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="Lerkendal stadion / RBK" loading="lazy" decoding="async"/>
           <span class="sticker">100kr</span>
         </div>
         <div class="card-body">
@@ -79,13 +95,20 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Adressabilletten – RBK" data-code="RBK-ADRESSA-90" data-when="Flere datoer" data-where="Lerkendal stadion, Trondheim" data-desc="Sikre deg Adressabilletten til utvalgte RBK‑hjemmekamper. Begrenset antall. Maks 2 billetter per abonnent, så langt lageret rekker." data-img="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Adressabilletten – RBK" data-code="RBK-ADRESSA-90" data-when="Flere datoer" data-where="Lerkendal stadion, Trondheim" data-desc="Sikre deg Adressabilletten til utvalgte RBK-hjemmekamper. Begrenset antall. Maks 2 billetter per abonnent, så langt lageret rekker."
+            data-img="https://assets.echobox.com/urn:property:17036/29772a0e-cb12-4298-8081-543a06e33188.jpg">Vis rabattkode</button>
         </div>
       </article>
 
+      <!-- Ranheim -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg" alt="Ranheim Fotball – Ranheim Extra Arena"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="Ranheim Fotball – Ranheim Extra Arena" loading="lazy" decoding="async"/>
           <span class="sticker">10%</span>
         </div>
         <div class="card-body">
@@ -96,13 +119,20 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Ranheim – 10%" data-code="RANHEIM-10" data-when="Hjemmekamper" data-where="Ranheim Extra Arena, Trondheim" data-desc="Få 10% rabatt på billetter til Ranheim sine hjemmekamper på Ranheim Extra Arena. Gjelder ordinære billetter i kampanjeperioden." data-img="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Ranheim – 10%" data-code="RANHEIM-10" data-when="Hjemmekamper" data-where="Ranheim Extra Arena, Trondheim" data-desc="Få 10% rabatt på billetter til Ranheim sine hjemmekamper på Ranheim Extra Arena. Gjelder ordinære billetter i kampanjeperioden."
+            data-img="https://assets.echobox.com/urn:property:17036/c027bd28-0241-4ce7-b410-a84a692c4c0f.jpg">Vis rabattkode</button>
         </div>
       </article>
 
+      <!-- TSO -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg" alt="Trondheim Symfoniorkester"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="Trondheim Symfoniorkester" loading="lazy" decoding="async"/>
           <span class="sticker">10%</span>
         </div>
         <div class="card-body">
@@ -113,13 +143,20 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Trondheim Symfoniorkester – 10%" data-code="TSO-10-2025" data-when="Gjelder ut 2025" data-where="Trondheim" data-desc="Få 10% rabatt på utvalgte konserter med Trondheim Symfoniorkester. Gjelder i kampanjeperioden ut 2025." data-img="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Trondheim Symfoniorkester – 10%" data-code="TSO-10-2025" data-when="Gjelder ut 2025" data-where="Trondheim" data-desc="Få 10% rabatt på utvalgte konserter med Trondheim Symfoniorkester. Gjelder i kampanjeperioden ut 2025."
+            data-img="https://assets.echobox.com/urn:property:17036/020b9e71-a15b-4a84-8df5-d4b66d6157d4.jpg">Vis rabattkode</button>
         </div>
       </article>
 
+      <!-- Bent Stiansen 50% -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg" alt="Videokurs – Bent Stiansen"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="Videokurs – Bent Stiansen" loading="lazy" decoding="async"/>
           <span class="sticker">50%</span>
         </div>
         <div class="card-body">
@@ -130,13 +167,20 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Videokurs med Bent Stiansen – 50%" data-code="FRAXX-STIANSEN-50-NOV" data-imgpos="50% 15%" data-img="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Videokurs med Bent Stiansen – 50%" data-code="FRAXX-STIANSEN-50-NOV" data-imgpos="50% 15%"
+            data-img="https://assets.echobox.com/urn:property:17036/2df6df92-7304-4497-93d9-8464d748c5f7.jpg">Vis rabattkode</button>
         </div>
       </article>
 
+      <!-- Videokurs 30% -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg" alt="TRD.by – helgestemning"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="TRD.by – helgestemning" loading="lazy" decoding="async"/>
           <span class="sticker">30%</span>
         </div>
         <div class="card-body">
@@ -147,13 +191,20 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Fraxx – 30%" data-code="FRAXX-30-OKT" data-imgpos="50% 15%" data-img="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Fraxx – 30%" data-code="FRAXX-30-OKT" data-imgpos="50% 15%"
+            data-img="https://assets.echobox.com/urn:property:17036/3992af79-13e4-4155-ae18-de28f2b4d15c.jpg">Vis rabattkode</button>
         </div>
       </article>
 
+      <!-- Kolstad -->
       <article class="card">
         <div class="card-media">
-          <img src="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg" alt="Kolstad Håndball"/>
+          <img
+            src="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg"
+            srcset="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg 1x,
+                    https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg 2x"
+            sizes="(min-width:1024px) 252px, (min-width:640px) 50vw, 100vw"
+            alt="Kolstad Håndball" loading="lazy" decoding="async"/>
           <span class="sticker">15%</span>
         </div>
         <div class="card-body">
@@ -164,7 +215,8 @@
           </div>
         </div>
         <div class="cta">
-          <button class="btn open-modal" data-title="Kolstad – 15%" data-code="KOLSTAD-15" data-when="Fast avtale" data-where="Kolstad Arena" data-desc="Spar 15% på Kolstad Håndball sine hjemmekamper gjennom hele sesongen" data-img="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg">Vis rabattkode</button>
+          <button class="btn open-modal" data-title="Kolstad – 15%" data-code="KOLSTAD-15" data-when="Fast avtale" data-where="Kolstad Arena" data-desc="Spar 15% på Kolstad Håndball sine hjemmekamper gjennom hele sesongen"
+            data-img="https://assets.echobox.com/urn:property:17036/00707858-629b-4146-913d-acdcbe65e092.jpg">Vis rabattkode</button>
         </div>
       </article>
     </section>
@@ -172,13 +224,20 @@
     <footer><p>Vilkår kan gjelde. Enkelte fordeler har begrenset kapasitet eller utvalgte datoer.</p></footer>
   </div>
 
+  <!-- Modal -->
   <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
     <div class="dialog">
       <div class="dialog-header">
         <div class="dialog-title" id="dialog-title">Rabattkode</div>
         <button class="close" type="button" id="closeBtn" aria-label="Lukk">Lukk ×</button>
       </div>
-      <div class="modal-media"><img id="modalImg" alt=""></div>
+      <div class="modal-media">
+        <img id="modalImg"
+             src=""
+             srcset=""
+             sizes="(min-width:1024px) 560px, 92vw"
+             alt="">
+      </div>
       <div class="modal-content">
         <h2 class="modal-title" id="modalTitle"></h2>
         <div class="details">
@@ -204,6 +263,7 @@
     const overlay = document.getElementById('overlay');
     const titleEl = document.getElementById('dialog-title');
     const closeBtn = document.getElementById('closeBtn');
+
     const imgEl    = document.getElementById('modalImg');
     const h2El     = document.getElementById('modalTitle');
     const whenWrap = document.getElementById('modalWhenWrap');
@@ -215,18 +275,31 @@
     const copyBtn  = document.getElementById('copyBtn');
     const copiedEl = document.getElementById('copied');
 
+    // Hjelper: sett src/srcset/sizes på modal-bildet for skarp gjengivelse
+    function setModalImage(url){
+      if(!url){ imgEl.removeAttribute('src'); imgEl.removeAttribute('srcset'); return; }
+      imgEl.src = url;
+      imgEl.srcset = url + " 1x, " + url + " 2x";
+      // sizes satt i HTML (560px / 92vw) for å hindre oppskalering
+    }
+
     function openModal(data){
       titleEl.textContent = data.title || 'Rabattkode';
-      if(data.img){ imgEl.src = data.img; imgEl.style.objectPosition = data.imgpos || ''; imgEl.parentElement.style.display = ''; }
-      else { imgEl.removeAttribute('src'); imgEl.parentElement.style.display = 'none'; }
+
+      setModalImage(data.img);
+      imgEl.style.objectPosition = data.imgpos || '';
+
       h2El.textContent = data.title || '';
       whenEl.textContent = data.when || '';
       whereEl.textContent = data.where || '';
       descEl.textContent = data.desc || '';
+
       whenWrap.hidden  = !data.when;
       whereWrap.hidden = !data.where;
       descEl.hidden    = !data.desc;
+
       codeEl.textContent = data.code || 'KODE-XXXX';
+
       overlay.classList.add('open');
     }
 
@@ -236,18 +309,28 @@
       btn.addEventListener('click', function(e){
         e.preventDefault();
         openModal({
-          title:this.dataset.title, code:this.dataset.code, when:this.dataset.when,
-          where:this.dataset.where, desc:this.dataset.desc, img:this.dataset.img,
+          title:this.dataset.title,
+          code:this.dataset.code,
+          when:this.dataset.when,
+          where:this.dataset.where,
+          desc:this.dataset.desc,
+          img:this.dataset.img,
           imgpos:this.dataset.imgpos
         });
       });
     });
 
     copyBtn.addEventListener('click', async function(){
-      try{ await navigator.clipboard.writeText(codeEl.textContent); }
-      catch(e){ const tmp=document.createElement('input'); tmp.value=codeEl.textContent; document.body.appendChild(tmp); tmp.select(); try{document.execCommand('copy');}catch(_){ } document.body.removeChild(tmp); }
+      try { await navigator.clipboard.writeText(codeEl.textContent); }
+      catch(e){
+        const tmp=document.createElement('input');
+        tmp.value=codeEl.textContent; document.body.appendChild(tmp);
+        tmp.select(); try{document.execCommand('copy');}catch(_){}
+        document.body.removeChild(tmp);
+      }
       copiedEl.hidden=false; setTimeout(()=>copiedEl.hidden=true,2000);
     });
+
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closeModal(); });
     document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
